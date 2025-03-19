@@ -31,7 +31,8 @@ klipper-image-capture/
 ## Configuration
 ### Modify Klipper Configuration
 #### Add the following to your `printer.cfg` (e.g., `/home/klipper/printer_data/config/printer.cfg`) to integrate the scripts with Klipper: 
-```[shell_command start_capture]
+```
+[shell_command start_capture]
 command: /bin/bash /home/klipper/capture_images/start_print.sh
 timeout: 30.0
 verbose: True
@@ -76,7 +77,9 @@ gcode:
     M140 S0
     M107
     M84
-    STOP_CAPTURE_SCRIPT``` 
+    STOP_CAPTURE_SCRIPT
+```
+
 #### Restart Klipper after editing: 
 ```bash sudo systemctl restart klipper```
 ### Customize `capture_images.py` (Optional)
