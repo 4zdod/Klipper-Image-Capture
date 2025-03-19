@@ -20,3 +20,4 @@ This repository contains scripts to capture images at regular intervals during 3
     ```bash
     sudo apt update
     sudo apt install fswebcam
+  - Python 3 (pre-installed on Raspberry Pi OS).
