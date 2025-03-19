@@ -21,3 +21,10 @@ This repository contains scripts to capture images at regular intervals during 3
     sudo apt update
     sudo apt install fswebcam
   - Python 3 (pre-installed on Raspberry Pi OS).
+
+## Repository Structure
+klipper-image-capture/
+├── capture_images.py    # Python script to capture images during printing
+├── start_print.sh      # Shell script to start image capture
+├── stop_print.sh       # Shell script to stop image capture
+└── README.md           # This file
