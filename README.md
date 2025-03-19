@@ -30,7 +30,7 @@ klipper-image-capture/
 4. **Verify Camera Access**: Ensure the `klipper` user can access the webcam: ```bash sudo usermod -aG video klipper ls /dev/video0 ```
 ## Configuration
 ### Modify Klipper Configuration
-#### Add the following to your `printer.cfg` (e.g., `/home/klipper/printer_data/config/printer.cfg`) to integrate the scripts with Klipper: 
+Add the following to your `printer.cfg` (e.g., `/home/klipper/printer_data/config/printer.cfg`) to integrate the scripts with Klipper: 
 ```
 [shell_command start_capture]
 command: /bin/bash /home/klipper/capture_images/start_print.sh
