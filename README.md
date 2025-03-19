@@ -22,6 +22,7 @@ klipper-image-capture/
 ├── start_print.sh      # Shell script to start image capture
 ├── stop_print.sh       # Shell script to stop image capture
 └── README.md           # This file
+```
 ## Installation
 1. **Clone the Repository**: ```bash git clone https://github.com/<your-username>/klipper-image-capture.git cd klipper-image-capture ```
 2. **Set Permissions**: Ensure the scripts are executable: ```bash chmod +x capture_images.py start_print.sh stop_print.sh ```
