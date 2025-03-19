@@ -30,8 +30,53 @@ klipper-image-capture/
 4. **Verify Camera Access**: Ensure the `klipper` user can access the webcam: ```bash sudo usermod -aG video klipper ls /dev/video0 ```
 ## Configuration
 ### Modify Klipper Configuration
-Add the following to your `printer.cfg` (e.g., `/home/klipper/printer_data/config/printer.cfg`) to integrate the scripts with Klipper: 
-```ini [shell_command start_capture] command: /bin/bash /home/klipper/capture_images/start_print.sh timeout: 30.0 verbose: True [shell_command stop_capture] command: /bin/bash /home/klipper/capture_images/stop_print.sh timeout: 30.0 verbose: True [gcode_macro START_CAPTURE_SCRIPT] description: "Start image capture" gcode: RUN_SHELL_COMMAND CMD=start_capture {action_respond_info("Started image capture.")} [gcode_macro STOP_CAPTURE_SCRIPT] description: "Stop image capture" gcode: RUN_SHELL_COMMAND CMD=stop_capture {action_respond_info("Stopped image capture.")} [gcode_macro PRINT_START] description: "Start Print Macro" gcode: M190 S{params.BED|default(60)} M104 S{params.EXTRUDER|default(200)} M109 S{params.EXTRUDER|default(200)} G28 G92 E0 G1 Z5 F300 G1 X20 Y330 F3000 START_CAPTURE_SCRIPT [gcode_macro PRINT_END] description: "End Print Macro" gcode: G91 G1 Z10 F300 G90 G1 X20 Y330 F3000 M104 S0 M140 S0 M107 M84 STOP_CAPTURE_SCRIPT ``` 
+#### Add the following to your `printer.cfg` (e.g., `/home/klipper/printer_data/config/printer.cfg`) to integrate the scripts with Klipper: 
+```[shell_command start_capture]
+command: /bin/bash /home/klipper/capture_images/start_print.sh
+timeout: 30.0
+verbose: True
+
+[shell_command stop_capture]
+command: /bin/bash /home/klipper/capture_images/stop_print.sh
+timeout: 30.0
+verbose: True
+
+[gcode_macro START_CAPTURE_SCRIPT]
+description: "Start image capture"
+gcode:
+    RUN_SHELL_COMMAND CMD=start_capture
+    {action_respond_info("Started image capture.")}
+
+[gcode_macro STOP_CAPTURE_SCRIPT]
+description: "Stop image capture"
+gcode:
+    RUN_SHELL_COMMAND CMD=stop_capture
+    {action_respond_info("Stopped image capture.")}
+
+[gcode_macro PRINT_START]
+description: "Start Print Macro"
+gcode:
+    M190 S{params.BED|default(60)}
+    M104 S{params.EXTRUDER|default(200)}
+    M109 S{params.EXTRUDER|default(200)}
+    G28
+    G92 E0
+    G1 Z5 F300
+    G1 X20 Y330 F3000
+    START_CAPTURE_SCRIPT
+
+[gcode_macro PRINT_END]
+description: "End Print Macro"
+gcode:
+    G91
+    G1 Z10 F300
+    G90
+    G1 X20 Y330 F3000
+    M104 S0
+    M140 S0
+    M107
+    M84
+    STOP_CAPTURE_SCRIPT``` 
 #### Restart Klipper after editing: 
 ```bash sudo systemctl restart klipper```
 ### Customize `capture_images.py` (Optional)
