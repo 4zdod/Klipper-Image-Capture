@@ -24,10 +24,24 @@ klipper-image-capture/
 └── README.md           # This file
 ```
 ## Installation
-1. **Clone the Repository**: ```bash git clone https://github.com/<your-username>/klipper-image-capture.git cd klipper-image-capture ```
-2. **Set Permissions**: Ensure the scripts are executable: ```bash chmod +x capture_images.py start_print.sh stop_print.sh ```
-3. **Move Files to Klipper Directory**: Place the scripts in `/home/klipper/capture_images/`: ```bash mkdir -p /home/klipper/capture_images cp * /home/klipper/capture_images/ ```
-4. **Verify Camera Access**: Ensure the `klipper` user can access the webcam: ```bash sudo usermod -aG video klipper ls /dev/video0 ```
+1. **Clone the Repository**:
+```bash
+git clone https://github.com/drakishev/klipper-image-capture.git
+cd klipper-image-capture
+```
+2. **Set Permissions**: Ensure the scripts are executable:
+```bash
+chmod +x capture_images.py start_print.sh stop_print.sh
+```
+3. **Move Files to Klipper Directory**: Place the scripts in `/home/klipper/capture_images/`:
+```bash
+mkdir -p /home/klipper/capture_images
+cp * /home/klipper/capture_images/
+```
+4. **Verify Camera Access**: Ensure the `klipper` user can access the webcam:
+```bash
+sudo usermod -aG video klipper ls /dev/video0
+```
 ## Configuration
 ### Modify Klipper Configuration
 Add the following to your `printer.cfg` (e.g., `/home/klipper/printer_data/config/printer.cfg`) to integrate the scripts with Klipper: 
@@ -81,7 +95,9 @@ gcode:
 ```
 
 #### Restart Klipper after editing: 
-```bash sudo systemctl restart klipper```
+```bash 
+sudo systemctl restart klipper
+```
 ### Customize `capture_images.py` (Optional)
 - **Capture Interval**: Adjust `CAPTURE_INTERVAL` (default: 200 seconds) in `capture_images.py`.
 - **Save Directory**: Change `BASE_SAVE_DIRECTORY` if desired.
@@ -89,12 +105,26 @@ gcode:
 ## Usage
 1. Start a print via Fluidd or Mainsail. - The `PRINT_START` macro triggers `start_print.sh`, which runs `capture_images.py` in the background. - Images are saved to `/home/klipper/capture_images/print_<timestamp>/`.
 2. End the print. - The `PRINT_END` macro triggers `stop_print.sh`, stopping the image capture.
-3. Access images: ```bash ls /home/klipper/capture_images/print_<timestamp>/ ```
+3. Access images:
+```bash
+ls /home/klipper/capture_images/print_<timestamp>/
+```
 ## Troubleshooting
 - **Camera Not Found**: Verify the device with `ls /dev/video*` and update `CAMERA_DEVICE` in `capture_images.py`.
-- **`RUN_SHELL_COMMAND` Errors**: Ensure your Klipper installation supports the `shell_command` extension. Update Klipper via KIAUH if needed: ```bash cd ~/kiauh ./kiauh.sh ```
-- **Permission Issues**: Ensure the `klipper` user has write access to `/home/klipper/capture_images`: ```bash sudo chown -R klipper:klipper /home/klipper/capture_images chmod -R 755 /home/klipper/capture_images ```
-- **High CPU Usage**: Check resource usage with: ```bash top ``` Adjust `CAPTURE_INTERVAL` or image resolution if needed.
+- **`RUN_SHELL_COMMAND` Errors**: Ensure your Klipper installation supports the `shell_command` extension. Update Klipper via KIAUH if needed:
+```bash
+cd ~/kiauh ./kiauh.sh
+```
+- **Permission Issues**: Ensure the `klipper` user has write access to `/home/klipper/capture_images`:
+```bash
+sudo chown -R klipper:klipper /home/klipper/capture_images
+chmod -R 755 /home/klipper/capture_images
+```
+- **High CPU Usage**: Check resource usage with:
+```bash
+top
+```
+Adjust `CAPTURE_INTERVAL` or image resolution if needed.
 ## Contributing
 Feel free to submit issues or pull requests to improve this project. Suggestions for better integration with Klipper or additional features (e.g., timelapse generation) are welcome!
 ## License
