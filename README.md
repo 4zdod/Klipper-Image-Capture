@@ -24,23 +24,23 @@ klipper-image-capture/
 └── README.md           # This file
 ```
 ## Installation
-1. **Clone the Repository**:
+1. **Clone the Repository To The Klipper Directory**:
 ```bash
-git clone https://github.com/drakishev/klipper-image-capture.git
-cd klipper-image-capture
+cd /home/klipper/
+git clone https://github.com/drakishev/klipper_image_capture.git
 ```
-2. **Set Permissions**: Ensure the scripts are executable:
+2. **Rename Directory**:
+```bash
+mv /home/klipper/klipper_image_capture-main /home/klipper/capture_images
+```
+3. **Set Permissions**: Ensure the scripts are executable:
 ```bash
 chmod +x capture_images.py start_print.sh stop_print.sh
 ```
-3. **Move Files to Klipper Directory**: Place the scripts in `/home/klipper/capture_images/`:
-```bash
-mkdir -p /home/klipper/capture_images
-cp * /home/klipper/capture_images/
-```
 4. **Verify Camera Access**: Ensure the `klipper` user can access the webcam:
 ```bash
-sudo usermod -aG video klipper ls /dev/video0
+sudo usermod -aG video klipper
+ls /dev/video0
 ```
 ## Configuration
 ### Modify Klipper Configuration
